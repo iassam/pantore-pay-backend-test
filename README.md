@@ -48,7 +48,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 Clone o repositório:
 ```
-git clone https://github.com/xxx/teste-empresa-xxx.git
+git clone https://github.com/iassam/pantore-pay-backend-test.git
 ```
 
 Inicie os containers da aplicação:
