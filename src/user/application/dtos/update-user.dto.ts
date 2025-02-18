@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNotEmpty, IsOptional } from "class-validator";
-import { UserRole } from "src/user/shared/enums";
+import { UserRole } from "../../shared/enums";
 
 export class UpdateUserDto {
     

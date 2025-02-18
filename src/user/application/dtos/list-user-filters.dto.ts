@@ -1,5 +1,5 @@
 import { IsEnum, IsString } from "class-validator";
-import { UserRole } from "src/user/shared/enums";
+import { UserRole } from "../../shared/enums";
 
 export class ListUserFilterDto {
   @IsString()
