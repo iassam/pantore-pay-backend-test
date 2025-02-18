@@ -1,0 +1,50 @@
+services:
+  local-pantore-pay-db:
+    container_name: local-pantore-pay-db
+    hostname: local-pantore-pay-db
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: testpassword
+      POSTGRES_DB: pantore_pay
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+
+  local-pantore-pay-api:
+    container_name: local-pantore-pay-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run start:dev
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - local-pantore-pay-db
+    environment:
+      NODE_ENV: development
+      DATABASE_USER: admin
+      DATABASE_PASSWORD: testpassword
+      DATABASE_NAME: pantore_pay
+      DATABASE_LOGGING: true
+      DATABASE_PORT: 5432
+      DATABASE_HOST: local-pantore-pay-db
+      DATABASE_SYNCHRONIZE: false
+
+    deploy:
+      resources:
+        limits:
+          memory: 512M
