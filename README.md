@@ -9,8 +9,8 @@
 
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
+ <a href="#-requisitos">Requisitos</a> •
  <a href="#-funcionalidades">Funcionalidades</a> •
- <a href="#-layout">Layout</a> • 
  <a href="#-como-executar-o-projeto">Como executar</a>
 </p>
 
@@ -21,7 +21,13 @@ Este repositório contém um teste desenvolvido para a empresa Pantore Pay, com 
 
 ## Requisitos
 
-## ⚙️ Funcionalidades
+- Criar um usuário na base de dados
+- Atualizar o perfil do usuário na base
+- Buscar e retornar usuários da base de dados
+- Filtrar usuários por um campo de busca (pelo javascript ou pela query de consulta na base)
+- Quaisquer funcionalidades extras serão consideradas um diferencial
+
+## ⚙️ Funcionalidades Implementadas
 
 - Criar um usuário na base de dados
 - Atualizar o perfil do usuário na base
