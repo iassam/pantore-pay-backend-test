@@ -19,7 +19,7 @@ Este repositório contém um teste desenvolvido para a empresa Pantore Pay, com 
 
 ---
 
-## Requisitos
+## ⚙️ Requisitos
 
 - Criar um usuário na base de dados
 - Atualizar o perfil do usuário na base
@@ -27,7 +27,9 @@ Este repositório contém um teste desenvolvido para a empresa Pantore Pay, com 
 - Filtrar usuários por um campo de busca (pelo javascript ou pela query de consulta na base)
 - Quaisquer funcionalidades extras serão consideradas um diferencial
 
-## ⚙️ Funcionalidades Implementadas
+---
+
+## ⚙️ Funcionalidades
 
 - Criar um usuário na base de dados
 - Atualizar o perfil do usuário na base
