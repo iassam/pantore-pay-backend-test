@@ -4,7 +4,7 @@
 </p>
 
 <h4 align="center"> 
-	Pantore Pay - Teste Backend
+  Pantore Pay - Teste Backend
 </h4>
 
 <p align="center">
@@ -40,7 +40,7 @@ Este repositório contém um teste desenvolvido para a empresa Pantore Pay, com 
 - Cobertura de testes (unitarios e e2e)
 - Containers para o ambiente local com Docker e docker-compose
 - Database migrations
-- Documentacao utilizando JSDoc
+- Documentação utilizando JSDoc
 
 ---
 
@@ -64,12 +64,12 @@ Crie o arquivo .env com base nas configurações de exemplo:
 cp .env.example .env
 ```
 
-Instale as dependencias do projeto:
+Instale as dependências do projeto:
 ```
 npm i
 ```
 
-Inicie os containers da aplicação:
+Inicie os contêineres da aplicação:
 ```
 docker compose up -d
 ```
@@ -79,21 +79,21 @@ Execute as migrations para criar a estrutura de tabelas da aplicação:
 docker exec -it local-pantore-pay-api npx typeorm-ts-node-commonjs migration:run -d ./database/config/typeorm.config.ts
 ```
 
-Agora se tudo ocorreu conforme o esperado acesse a documentação da api atraves do swagger: http://localhost:3000/api
+Agora se tudo ocorreu conforme o esperado acesse a documentação da api através do swagger: http://localhost:3000/api
 
 
 ### Rodando testes
 
-No diretorio do projeto local execute os seguites comandos para obter os respectivos resultados:
+No diretório do projeto local execute os seguintes comandos para obter os respectivos resultados:
 
-#### Executar testes unitarios
+#### Executar testes unitários
 
 ```
 npm run test
 ```
 
 #### Executar testes E2E
-Observação: antes de rodar os testes E2E verifique se sua aplição está rodando corretamente.
+Observação: antes de rodar os testes E2E verifique se sua aplicação está rodando corretamente.
 ```
 npm run test:e2e
 ```
