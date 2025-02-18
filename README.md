@@ -27,7 +27,7 @@ Este repositório contém um teste desenvolvido para a empresa Pantore Pay, com 
 - Atualizar o perfil do usuário na base
 - Buscar e retornar usuários da base de dados
 - Filtrar usuários por um campo de busca
-- Documentação da api com swagger disponivel em: 
+- Documentação da api com swagger disponivel em: http://localhost:3000/api
 - Versionamento da api Ex: /api/v1
 - Cobertura de testes (unitarios e e2e)
 - Containers para o ambiente local com Docker e docker-compose
@@ -49,6 +49,15 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 Clone o repositório:
 ```
 git clone https://github.com/iassam/pantore-pay-backend-test.git
+
+Crie o arquivo .env com base nas configurações de exemplo:
+```
+cp .env.example .env
+```
+
+Instale as dependencias do projeto:
+```
+npm i
 ```
 
 Inicie os containers da aplicação:
@@ -58,32 +67,24 @@ docker compose up -d
 
 Execute as migrations para criar a estrutura de tabelas da aplicação:
 ```
-npx typeorm-ts-node-commonjs migration:run -d ./database/config/typeorm.config.ts
+docker exec -it local-pantore-pay-api npx typeorm-ts-node-commonjs migration:run -d ./database/config/typeorm.config.ts
 ```
 
-Agora se tudo ocorreu conforme o esperado acesse a documentação da api atraves do swagger: 
+Agora se tudo ocorreu conforme o esperado acesse a documentação da api atraves do swagger: http://localhost:3000/api
 
 
 ### Rodando testes
 
-```bash
-# unit tests
-$ npm run test
+No diretorio do projeto local execute os seguites comandos para obter os respectivos resultados:
 
-# e2e tests
-$ npm run test:e2e
+#### Executar testes unitarios
 
-# test coverage
-$ npm run test:cov
+```
+npm run test
 ```
 
-## Criar migrations
+#### Executar testes E2E
+Observação: antes de rodar os testes E2E verifique se sua aplição está rodando corretamente.
 ```
-npx typeorm migration:create ./database/migrations/createUsersTable
-```
-
-## Executar migrations
-```
-npx typeorm-ts-node-commonjs migration:run -d ./database/config/typeorm.config.ts
-
+npm run test:e2e
 ```
