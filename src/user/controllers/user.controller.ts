@@ -4,9 +4,20 @@ import {
     Post,
     HttpCode,
     HttpStatus,
+    Param,
+    Get,
+    Query,
+    Patch,
   } from "@nestjs/common";
-import { CreateUserDto } from "../application/dtos";
-import { CreateUserUseCase } from "../application/use-cases";
+import { CreateUserDto, ListUsersParamsDto, UpdateUserDto } from "../application/dtos";
+import { ApiResponse } from "@nestjs/swagger";
+import { UserEntity } from "../application/entities";
+import { 
+  CreateUserUseCase,
+  FindUserUseCase,
+  ListUserUseCase,
+  UpdateUserUseCase 
+} from "../application/use-cases";
   
   @Controller({
     version: "1",
@@ -14,7 +25,12 @@ import { CreateUserUseCase } from "../application/use-cases";
   })
   @Controller("users")
   export class UserController {
-    constructor(private readonly createUserUseCase: CreateUserUseCase) {}
+    constructor(
+      private readonly createUserUseCase: CreateUserUseCase,
+      private readonly findUserUseCase:FindUserUseCase,
+      private readonly listUserUseCase:ListUserUseCase,
+      private readonly updateUserUseCase:UpdateUserUseCase
+    ) {}
   
     @Post("/")
     @HttpCode(HttpStatus.CREATED)
@@ -22,24 +38,32 @@ import { CreateUserUseCase } from "../application/use-cases";
       await this.createUserUseCase.execute(createUserDto);
     }
 
-    // @Public()
-    // @HttpCode(HttpStatus.NO_CONTENT)
-    // @Patch("/")
-    // async update(@Body() createUserDto: CreateUserDto): Promise<void> {
-    //   await this.usersService.create(createUserDto);
-    // }
+    @HttpCode(HttpStatus.NO_CONTENT)
+    @Patch("/:id")
+    async update(
+      @Param('id') userId: string, 
+      @Body() updateUserDto: UpdateUserDto
+    ): Promise<void> {
+      await this.updateUserUseCase.execute(userId, updateUserDto);
+    }
   
-    // @Get("/:id")
-    // @HttpCode(HttpStatus.OK)
-    // @ApiBearerAuth()
-    // async find(@Param("id") id: string) {
-    //   return await this.usersService.findOne({ id });
-    // }
+    @Get("/:id")
+    @HttpCode(HttpStatus.OK)
+    @ApiResponse({
+      status: HttpStatus.OK,
+      description: "Found user record",
+    })
+    async find(@Param("id") userId: string): Promise<UserEntity> {
+      return await this.findUserUseCase.execute(userId);
+    }
   
-    // @Get("/")//adicionar filtros por query parameters
-    // @HttpCode(HttpStatus.OK)
-    // @ApiBearerAuth()
-    // async list() {
-    //   return await this.usersService.findAll();
-    // }
+    @Get("/")
+    @HttpCode(HttpStatus.OK)
+    @ApiResponse({
+      status: HttpStatus.OK,
+      description: "Found users records",
+    })
+    async list(@Query() listUsersParamsDto:ListUsersParamsDto) {
+      return await this.listUserUseCase.execute(listUsersParamsDto);
+    }
   }

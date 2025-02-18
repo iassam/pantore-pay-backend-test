@@ -3,7 +3,13 @@ import { DatabaseUserRepository } from './infrastructure/repositories';
 import { UserController } from './controllers/user.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModel } from './infrastructure/models';
-import { CreateUserUseCase } from './application/use-cases';
+import { 
+  CreateUserUseCase,
+  FindUserUseCase,
+  ListUserUseCase,
+  MergeUserDataUseCase,
+  UpdateUserUseCase
+} from './application/use-cases';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserModel])],
@@ -11,6 +17,10 @@ import { CreateUserUseCase } from './application/use-cases';
   providers: [
     DatabaseUserRepository,
     CreateUserUseCase,
+    FindUserUseCase,
+    ListUserUseCase,
+    UpdateUserUseCase,
+    MergeUserDataUseCase,
     {
       provide: 'UserRepositoryInterface',
       useClass: DatabaseUserRepository,
