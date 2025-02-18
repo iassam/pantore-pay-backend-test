@@ -49,6 +49,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 Clone o repositório:
 ```
 git clone https://github.com/iassam/pantore-pay-backend-test.git
+```
 
 Crie o arquivo .env com base nas configurações de exemplo:
 ```
