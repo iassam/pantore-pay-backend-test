@@ -32,12 +32,21 @@ import {
       private readonly updateUserUseCase:UpdateUserUseCase
     ) {}
   
+    /**
+     * Creates a new user.
+     * @param createUserDto - User creation details.
+     */
     @Post("/")
     @HttpCode(HttpStatus.CREATED)
     async create(@Body() createUserDto: CreateUserDto): Promise<void> {
       await this.createUserUseCase.execute(createUserDto);
     }
 
+    /**
+     * Updates an existing user.
+     * @param userId - ID of the user to update.
+     * @param updateUserDto - User update details.
+     */
     @HttpCode(HttpStatus.NO_CONTENT)
     @Patch("/:id")
     async update(
@@ -47,6 +56,11 @@ import {
       await this.updateUserUseCase.execute(userId, updateUserDto);
     }
   
+    /**
+     * Finds a user by ID.
+     * @param userId - ID of the user to find.
+     * @returns The found user entity.
+     */
     @Get("/:id")
     @HttpCode(HttpStatus.OK)
     @ApiResponse({
@@ -57,6 +71,11 @@ import {
       return await this.findUserUseCase.execute(userId);
     }
   
+    /**
+     * Lists users based on query parameters.
+     * @param listUsersParamsDto - Object containing list query parameters.
+     * @returns A list of user entities.
+     */
     @Get("/")
     @HttpCode(HttpStatus.OK)
     @ApiResponse({
