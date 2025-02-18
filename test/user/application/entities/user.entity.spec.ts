@@ -1,7 +1,7 @@
-import { UserEntity } from "./user.entity";
-import { UserRole } from "../../shared/enums";
 import { faker } from '@faker-js/faker';
 import { plainToClass } from "class-transformer";
+import { UserEntity } from '../../../../src/user/application/entities';
+import { UserRole } from '../../../../src/user/shared/enums';
 
 describe('UserEntity', () => {
     const generateUserMock = () => {
