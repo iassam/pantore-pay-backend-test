@@ -14,12 +14,23 @@ export class DatabaseUserRepository implements UserRepositoryInterface {
     private readonly usersRepository: Repository<UserModel>,
   ) {}
 
+  /**
+   * Saves a user entity to the database.
+   * @param userEntity - The user entity to save.
+   * @returns The saved user entity.
+   */
   async save(userEntity: UserEntity): Promise<UserEntity> {
     const storedUser = await this.usersRepository.save(userEntity);
 
     return plainToClass(UserEntity, storedUser);
   }
 
+  /**
+   * Finds a user by ID.
+   * @param userId - The ID of the user to find.
+   * @returns The found user entity.
+   * @throws NotFoundException if the user is not found.
+   */
   async findById(userId: string): Promise<UserEntity> {
     const foundUser = await this.usersRepository.findOneBy({ id: userId });
 
@@ -29,6 +40,11 @@ export class DatabaseUserRepository implements UserRepositoryInterface {
     return plainToClass(UserEntity, foundUser);
   }
 
+  /**
+   * Lists users based on filter parameters.
+   * @param listUsersParamsDto - The filter parameters for listing users.
+   * @returns A list of user entities.
+   */
   async list(listUsersParamsDto: ListUserFilterDto): Promise<UserEntity[]> {
     const foundUsers: UserModel[] = await this.usersRepository.find({
       where: listUsersParamsDto
